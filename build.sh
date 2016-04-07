@@ -1,15 +1,28 @@
-#!/bin/sh
+#!/bin/bash
 
 cd $(dirname $0)
 base=$(pwd)
 
 cc=gcc
 cflags="-W -Wall -g -std=c99"
-ldflags="-lSDL2 -lGL -lGLEW"
+ldflags="-lSDL2 -lGLEW"
 srcs=(
     $base/1_getting_started/1_hello_window/hello_window.c
     $base/1_getting_started/2_hello_triangle/hello_triangle.c
 )
+
+case "$OSTYPE" in
+  darwin*)
+    ldflags="$ldflags -framework OpenGL"
+    ;;
+  linux*)
+    ldflags="$ldflags -lGL"
+    ;;
+  *)
+    echo "unknown: $OSTYPE"
+    exit
+    ;;
+esac
 
 [ ! -d "build" ] && mkdir build
 

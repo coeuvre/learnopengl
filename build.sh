@@ -11,16 +11,18 @@ srcs=(
     $base/1_getting_started/2_hello_triangle/hello_triangle.c
 )
 
-case "$OSTYPE" in
-  darwin*)
-    ldflags="$ldflags -framework OpenGL"
+case $OSTYPE in
+    darwin*)
+        ldflags="$ldflags -framework OpenGL"
     ;;
-  linux*)
-    ldflags="$ldflags -lGL"
+
+    linux*)
+        ldflags="$ldflags -lGL"
     ;;
-  *)
-    echo "unknown: $OSTYPE"
-    exit
+
+    *)
+        echo "UNKNOWN: $OSTYPE"
+        exit
     ;;
 esac
 

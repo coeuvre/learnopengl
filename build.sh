@@ -4,11 +4,12 @@ cd $(dirname $0)
 base=$(pwd)
 
 cc=gcc
-cflags="-W -Wall -g -std=c99"
-ldflags="-lSDL2 -lGLEW"
+cflags="-W -Wall -g -std=c99 -I$base"
+ldflags="-lm -lSDL2 -lGLEW"
 srcs=(
     $base/1_getting_started/1_hello_window/hello_window.c
     $base/1_getting_started/2_hello_triangle/hello_triangle.c
+    $base/1_getting_started/3_shaders/shaders.c
 )
 
 case $OSTYPE in
